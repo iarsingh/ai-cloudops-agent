@@ -1,0 +1,7 @@
+{
+  "tools": [
+    {"name": "list_alerts", "description": "List firing alerts"},
+    {"name": "read_logs", "description": "Read recent logs for one service"},
+    {"name": "check_manifest", "description": "Check a deployment for missing limits"}
+  ]
+}
