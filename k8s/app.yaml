@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-cloudops-agent
+  labels:
+    app: ai-cloudops-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-cloudops-agent
+  template:
+    metadata:
+      labels:
+        app: ai-cloudops-agent
+    spec:
+      containers:
+        - name: api
+          image: ai-cloudops-agent:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-cloudops-agent
+spec:
+  selector:
+    app: ai-cloudops-agent
+  ports:
+    - port: 80
+      targetPort: 8080
