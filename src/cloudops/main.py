@@ -15,3 +15,8 @@ class Goal(BaseModel):
 @app.post("/agent/run")
 def agent_run(body: Goal):
     return run(body.goal)
+
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
